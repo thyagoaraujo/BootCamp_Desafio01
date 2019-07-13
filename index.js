@@ -78,5 +78,16 @@ app.delete('/projects/:id', getProjects, (req, res) => {
   return res.json({ message: 'Projeto deletado' });
 });
 
+//rota criar uma task para o projeto
+app.post('/projects/:id/tasks', getProjects, (req, res) => {
+  const { id } = req.params;
+  const { title } = req.body;
+  const { tasks } = req.body;
+
+  projects[id].title = title;
+  projects[id].tasks = [tasks];
+  return res.json(projects);
+});
+
 //Faz a aplicação ouvir a porta 3000
 app.listen(3000);
